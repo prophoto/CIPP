@@ -10,8 +10,8 @@ import {
   CircularProgress,
   Alert,
 } from "@mui/material";
-import { PropertyList } from "/src/components/property-list";
-import { PropertyListItem } from "/src/components/property-list-item";
+import { PropertyList } from "../property-list";
+import { PropertyListItem } from "../property-list-item";
 import { getCippFormatting } from "../../utils/get-cipp-formatting";
 import { Check as CheckIcon, Close as CloseIcon, Sync } from "@mui/icons-material";
 import { LinearProgressWithLabel } from "../linearProgressWithLabel";
@@ -60,7 +60,7 @@ export const CippExchangeInfoCard = (props) => {
           </Stack>
         }
       />
-      {exchangeData?.BlockedForSpam ? (
+      {exchangeData?.BlockedForSpam === true ? (
         <Alert severity="warning" sx={{ mx: 2, mt: 2, mb: 2 }}>
           This mailbox is currently blocked for spam.
         </Alert>
@@ -99,6 +99,14 @@ export const CippExchangeInfoCard = (props) => {
                   </Typography>
                   <Typography variant="inherit">
                     {getCippFormatting(exchangeData?.BlockedForSpam, "BlockedForSpam")}
+                  </Typography>
+                </Grid>
+                <Grid size={{ xs: 12, md: 12 }}>
+                  <Typography variant="inherit" color="text.primary" gutterBottom>
+                    Retention Policy:
+                  </Typography>
+                  <Typography variant="inherit">
+                    {getCippFormatting(exchangeData?.RetentionPolicy, "RetentionPolicy")}
                   </Typography>
                 </Grid>
               </Grid>
